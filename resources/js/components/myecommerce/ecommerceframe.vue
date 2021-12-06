@@ -37,14 +37,13 @@ components:{
 
 <style>
 #footer{
-    position: absolute;
+    position: static;
     width: 100%;
     bottom: 0;
     height: 60px;
     background: red;
-    
 }
-body{
-     background: rgb(219, 217, 217);
+#frame {
+    background: rgb(255 255 255);
 }
 </style>

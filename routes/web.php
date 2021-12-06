@@ -13,6 +13,8 @@ use App\Http\Controllers\uploadfilecontroller;
 use App\Http\Controllers\ecommercecontroller;
 use App\Http\Controllers\addreactcontroller;
 use App\Http\Controllers\ecocontroller;
+use App\Http\Controllers\entertainmentController;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,58 +35,7 @@ use App\Http\Controllers\ecocontroller;
 
 
 //for inertia//
-Route::get('/inertia',function()
-{
-    return Inertia::render('Welcome');
-});
 Route::get('/user/index',[inertiacontroller::class,'index'])->name('user.index');
-Route::delete('/user/{product}',[inertiacontroller::class,'destroy']);
-Route::match(['get','post'],'/user/create',[inertiacontroller::class,'create']);
-Route::get('/user/category',[inertiacontroller::class,'cat']);
-Route::get('/user/{product}/edit',[inertiacontroller::class,'edit']);
-Route::put('/user/update/{product}',[inertiacontroller::class,'update']);
-
-//Route::view('/','laravel+vue/newproject');
-Route::get('/userinterface',[ecommercecontroller::class,'showproduct'])->name('userinterface.showproduct');
-Route::get('/filter/{id}',[ecommercecontroller::class,'filterproduct']);
-Route::match(['get','post'],'/search',[ecommercecontroller::class,'search']);
-Route::match(['get','post'],'/loginfor',[ecommercecontroller::class,'loginuser']);
-Route::view('loginform','ecommerce/user/login');
-Route::match(['get','post'],'/logoutform',[ecommercecontroller::class,'logoutform']);
-Route::match(['get','post'],'/addcart',[ecommercecontroller::class,'addcart']);
-Route::get('/addcartlist',[ecommercecontroller::class,'addcartlist']);
-Route::get('/removeaddcart/{id}',[ecommercecontroller::class,'removecart']);
-Route::get('/addordernow',[ecommercecontroller::class,'addordernow']);
-Route::match(['get','post'],'/addorderplace',[ecommercecontroller::class,'addorderplace']);
-Route::get('/showorderlist',[ecommercecontroller::class,'showorderlist']);
-Route::get('/removelist',[ecommercecontroller::class,'removelist']);
-/////
-Route::view('/vue/userface','laravel+vue/userface');
-Route::view('/vue/showproduct','laravel+vue/userface');
-Route::get('/vue/getproduct',[uploadfilecontroller::class,'getproducts','getcategorys']);
-Route::get('/vue/getcates',[uploadfilecontroller::class,'getcategorys']);
-Route::post('/vue/postid',[uploadfilecontroller::class,'postid']);
-Route::view('/vue/showlogin','laravel+vue/userface');
-Route::match(['post','get'],'/vue/login',[uploadfilecontroller::class,'login']);
-Route::get('/vue/getuser',[uploadfilecontroller::class,'getuser']);
-Route::get('/vue/ft/{id}',[uploadfilecontroller::class,'filter']);
-Route::get('/vue/addcart',[uploadfilecontroller::class,'addcart']);
-Route::view('/vue/viewcart','laravel+vue/userface');
-Route::delete('/vue/delete/{id}',[uploadfilecontroller::class,'removecart']);
-Route::get('/vue/logout',[uploadfilecontroller::class,'logout']);
-Route::view('/vue/showinfo/{id}','laravel+vue/userface');
-// Route::get('/vue/showinfo/{id}',[uploadfilecontroller::class,'showinfo']);
-Route::get('/vue/viewinfo/{id}',[uploadfilecontroller::class,'viewinfo']);
-Route::get('/vue/mice',[uploadfilecontroller::class,'getmice']);
-Route::get('/vue/count',[uploadfilecontroller::class,'cartcount']);
-Route::view('/vue/payment','laravel+vue/userface');
-Route::get('/vue/totalprice',[uploadfilecontroller::class,'totalprice']);
-Route::get('/vue/getitem',[uploadfilecontroller::class,'getitem']);
-Route::delete('/vue/removeall',[uploadfilecontroller::class,'removeall']);
-Route::match(['get','post'],'/vue/postaddress',[uploadfilecontroller::class,'postaddress']);
-Route::view('/vue/myorder','laravel+vue/userface');
-Route::get('/vue/getmyorders',[uploadfilecontroller::class,'getmyorders']);
-Route::get('/vue/keyboard',[uploadfilecontroller::class,'getkeyboard']);
 
 //myecommerce
 Route::view('/ecommerce','laravel+vue/myecommercesite');
@@ -109,8 +60,82 @@ Route::delete('/ecommerce/deleteproduct/{id}',[ecocontroller::class,'deleteprodu
 Route::get('/ecommerce/edit/{id}',[ecocontroller::class,'editpost']);
 Route::put('/ecommerce/updatepost/{id}',[ecocontroller::class,'updatepost']);
 Route::view('/ecommerce/edit','laravel+vue/myecommercesite');
+Route::view('/ecommerce/photo','laravel+vue/myecommercesite');
 Route::match(['get','post'],'/ecommerce/postsearch',[ecocontroller::class,'postsearch']);
 Route::match(['get','post'],'/ecommerce/getsearch',[ecocontroller::class,'getsearch']);
+Route::get('/ecommerce/getprophoto',[ecocontroller::class,'getprophoto']);
+Route::get('/ecommerce/eachproduct/{id}',[ecocontroller::class,'eachproduct']);
+Route::view('/ecommerce/addphoto/{id}','laravel+vue/myecommercesite');
+Route::get('/ecommerce/countphoto/{id}',[ecocontroller::class,'countphoto']);
+Route::match(['get','post'],'/ecommerce/uploadphoto',[ecocontroller::class,'uploadphoto']);
+Route::get('/ecommerce/getphoto/{id}',[ecocontroller::class,'getphoto']);
+Route::delete('/ecommerce/deletephoto/{id}',[ecocontroller::class,'deletephoto']);
 
 //for myecommerce user
 Route::view('/ecommerce/user/frame','laravel+vue/myecommercesiteuser');
+Route::view('/ecommerce/user/home','laravel+vue/myecommercesiteuser');
+Route::get('/ecommerce/user/getallproducts',[ecocontroller::class,'getallproducts']);
+Route::get('/ecommerce/user/searchallproducts',[ecocontroller::class,'searchallproducts']);
+Route::get('/ecommerce/user/getcategory',[ecocontroller::class,'getusercategory']);
+Route::get('/ecommerce/user/filter/get',[ecocontroller::class,'getproductbycat']);
+Route::view('/ecommerce/user/info/{id}','laravel+vue/myecommercesiteuser');
+Route::view('/ecommerce/user/register','laravel+vue/myecommercesiteuser');
+Route::view('/ecommerce/user/login','laravel+vue/myecommercesiteuser');
+Route::get('/ecommerce/user/getinfo/{id}',[ecocontroller::class,'getinfo']);
+Route::match(['get','post'],'/ecommerce/user/addregister',[ecocontroller::class,'registeruser']);
+Route::match(['get','post'],'/ecommerce/user/addlogin',[ecocontroller::class,'addlogin']);
+Route::view('/ecommerce/user/exchange','laravel+vue/myecommercesiteuser');
+Route::match(['get','post'],'/ecommerce/user/postdetails',[ecocontroller::class,'postdetails']);
+Route::view('/ecommerce/user/cart','laravel+vue/myecommercesiteuser');
+Route::get('/ecommerce/user/getcount',[ecocontroller::class,'getcount']);
+Route::get('/ecommerce/user/cartitem/{id}',[ecocontroller::class,'getcartitem']);
+Route::get('/ecommerce/user/getall',[ecocontroller::class,'getall']);
+Route::delete('/ecommerce/user/deletecart/{id}',[ecocontroller::class,'deletecart']);
+Route::get('/ecommerce/user/getcartitem/{id}',[ecocontroller::class,'getcartitems']);
+Route::view('/ecommerce/user/submitorder','laravel+vue/myecommercesiteuser');
+Route::match(['get','post'],'/ecommerce/user/ordernow',[ecocontroller::class,'ordernow']);
+Route::get('/ecommerce/user/getmyorder/{id}',[ecocontroller::class,'myorder']);
+Route::get('/ecommerce/user/getphoto/{id}',[ecocontroller::class,'getphotos']);
+
+// for Anime
+Route::view('/animeframe','laravel+vue/uiux');
+Route::view('/','laravel+vue/uiux');
+Route::view('/animeframe/myprojects','laravel+vue/uiux');
+Route::view('/animeframe/team','laravel+vue/uiux');
+Route::match(['get','post'],'/createdata',[entertainmentController::class,'createdata']);
+Route::get('/getdata',[entertainmentController::class,'getdata']);
+Route::delete('/deleteitem/{id}',[entertainmentController::class,'deleteitem']);
+Route::view('/animeframe/register','laravel+vue/uiux');
+Route::match(['get','post'],'/animeframe/register/add',[entertainmentController::class,'teamregister']);
+Route::view('/animeframe/login','laravel+vue/uiux');
+Route::match(['get','post'],'/animeframe/login/accept',[entertainmentController::class,'login']);
+Route::put('/animeframe/editdata/{id}',[entertainmentController::class,'edit']);
+Route::get('/animeframe/teamlist',[entertainmentController::class,'getTeam']);
+Route::get('/animeframe/getproject/{id}',[entertainmentController::class,'getproject']);
+Route::view('/animeframe/myprojects/viewseason/{id}','laravel+vue/uiux');
+Route::get('/animeframe/getdata/{id}',[entertainmentController::class,'getanimedata']);
+Route::match(['get','post'],'/animeframe/addseason/{id}',[entertainmentController::class,'addseason']);
+Route::get('/animeframe/getseason/{id}',[entertainmentController::class,'getseason']);
+Route::view('/animeframe/myprojects/viewseason/{mid}/viewepisode/{sid}','laravel+vue/uiux');
+Route::get('/animeframe/geteachseason/{id}',[entertainmentController::class,'geteachseason']);
+Route::match(['get','post'],'/animeframe/addepisode',[entertainmentController::class,'addepisode']);
+Route::get('/animeframe/getepisode/{id}',[entertainmentController::class,'getepisode']);
+Route::match(['get','post'],'/animeframe/addtype',[entertainmentController::class,'addtype']);
+Route::get('/animeframe/getType',[entertainmentController::class,'getType']);
+
+//for aseriesworld
+Route::view('/aframe','laravel+vue/aseriesworld');
+
+
+//for chat
+Route::view('/animeframe/chatpage','laravel+vue/chat');
+Route::match(['get','post'],'/animeframe/chatpage/send',[ChatController::class,'chatting']);
+Route::match(['get','post'],'/animeframe/teamlist/addprivate',[ChatController::class,'addprivate']);
+Route::view('/animeframe/privatechat','laravel+vue/uiux');
+Route::match(['get','post'],'/animeframe/addroom',[ChatController::class,'addroom']);
+Route::get('/animeframe/getroom/{id}',[ChatController::class,'getroom']);
+Route::get('/animeframe/getroombyid/{id}',[ChatController::class,'getroombyid']);
+Route::get('/animeframe/teamchat/{id}',[ChatController::class,'getTeam']);
+Route::match(['get','post'],'/animeframe/senduser',[ChatController::class,'senduser']);
+Route::get('/animeframe/getroomuser/{id}',[ChatController::class,'getroomuser']);
+Route::view('/animeframe/admin/chatting','laravel+vue/uiux');

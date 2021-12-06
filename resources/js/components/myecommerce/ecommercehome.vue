@@ -67,7 +67,9 @@ export default {
       {
        if(confirm('Are you sure about it'))
        {
-          await axios.delete(`/ecommerce/deleteproduct/${id}`)
+              var formdata=new FormData();
+              formdata.append('_method','DELETE');
+          await axios.post(`/ecommerce/deleteproduct/${id}`,formdata)
         .then((resp)=>{
           this.getproducts()
           alert('delete successfully')
@@ -113,8 +115,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .background{
   padding: 30px;
+  padding-bottom: 300px;
+  background: white;
+  flex: 1;
 }
 </style>

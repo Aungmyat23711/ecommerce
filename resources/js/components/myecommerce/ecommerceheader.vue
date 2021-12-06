@@ -20,6 +20,7 @@
               <li><router-link to='/ecommerce/home'><i class="fas fa-home"></i></router-link></li>
               <li><router-link to='/ecommerce/category'>Category</router-link></li>
               <li><router-link to='/ecommerce/product'>Product</router-link></li>
+              <li><router-link to='/ecommerce/photo'>Add Photo</router-link></li>
 
               <div style='display:flex;' v-if='!user'>
                   <li><router-link to='/ecommerce/login'>Login</router-link></li>

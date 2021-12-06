@@ -7,35 +7,21 @@
 require('./bootstrap');
 window.Vue = require('vue').default;
 window.Swal=Swal
-import {
-    Button,
-    HasError,
-    AlertError,
-    AlertErrors,
-    AlertSuccess
-  } from 'vform/src/components/bootstrap5'
-  import VueRouter from 'vue-router';
 
-  import Crudcomponent from './components/crud-component.vue'
- import About from './components/about-component.vue'
- import Category from './components/category-component'
- import Uploadfile from './components/uploadfile-component'
- import Createcat from './components/createcategory-component'
- import Createpro from './components/createproduct-component'
- import showproduct from  './components/showproduct-component'
- import Edit from './components/edit-component'
- import showlogin from './components/login-component'
+ import VueRouter from 'vue-router';
  import Swal from 'sweetalert2'
 import Vue from 'vue';
-import Cart from './components/addcart-component'
-import Info from './components/showinfo-component'
-import Payment from './components/payment-component'
-import myorder from './components/myorder-component'
 import VueSession from 'vue-session'
 import store from './vuex'
-export const eventBus = new Vue();
 
-import { result } from 'lodash';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+
+export const eventBus = new Vue();
 Vue.use(VueSession)
  Vue.use(VueRouter)
 //
@@ -50,34 +36,11 @@ Vue.use(VueSession)
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('crud-component',require('./components/crud-component.vue'));
-Vue.component('home-component',require('./components/home-component.vue'));
-Vue.component('about-component',require('./components/about-component.vue'));
-Vue.component('pagination',require('laravel-vue-pagination'));
-Vue.component('footer-component',require('./components/footer-component').default);
-Vue.component('category-component',require('./components/category-component').default);
-Vue.component('edit-component',require('./components/edit-component').default);
-Vue.component('index-component',require('./components/index-component.vue').default);
-Vue.component('uploadfile-component',require('./components/uploadfile-component.vue').default);
-Vue.component('createcategory-component',require('./components/createcategory-component.vue').default);
-Vue.component('createproduct-component',require('./components/createproduct-component.vue').default);
-Vue.component('usersignup-component',require('./components/usersignup-component').default);
-Vue.component('userface-component',require('./components/userface-component.vue').default);
-Vue.component('showproduct-component',require('./components/showproduct-component.vue').default);
-Vue.component('login-component',require('./components/login-component.vue').default);
-Vue.component('addcart-component',require('./components/addcart-component.vue').default);
-Vue.component('showinfo-component',require('./components/showinfo-component.vue').default);
-Vue.component('payment-component',require('./components/payment-component.vue').default);
-Vue.component('myorder-component',require('./components/myorder-component.vue').default);
-Vue.component(Button.name, Button)
-Vue.component(HasError.name, HasError)
-Vue.component(AlertError.name, AlertError)
-Vue.component(AlertErrors.name, AlertErrors)
-Vue.component(AlertSuccess.name, AlertSuccess)
+
 //for myecommerce
 Vue.component('ecommerceheader-component',
 require('./components/myecommerce/ecommerceheader.vue').default)
+Vue.component('pagination',require('laravel-vue-pagination'));
 Vue.component('ecommerceframe-component',require('./components/myecommerce/ecommerceframe.vue').default)
 Vue.component('ecommercehome-component',require('./components/myecommerce/ecommercehome.vue').default)
 Vue.component('ecommercefooter-component',require('./components/myecommerce/ecommercefooter.vue').default)
@@ -89,6 +52,10 @@ Vue.component('ecommerceproductedit-component',require('./components/myecommerce
 //for myecommerce user
 Vue.component('ecommerceuserframe-component',require('./components/userecommerce/ecommerceuserframe').default)
 Vue.component('ecommerceheaderuser-component',require('./components/userecommerce/ecommerceheader').default);
+Vue.component('ecommerceuserhome-component',require('./components/userecommerce/ecommerceuserhome').default);
+
+//for aseries world
+
 //for import myecommerce
 import Ehome from './components/myecommerce/ecommercehome.vue'
 import Eregister from './components/myecommerce/ecommerceregister.vue'
@@ -96,6 +63,19 @@ import Elogin from './components/myecommerce/ecommercelogin'
 import Ecategory from './components/myecommerce/ecommercecategory'
 import Eproduct from './components/myecommerce/ecommerceaddproduct'
 import Eedit from './components/myecommerce/ecommerceproductedit'
+import Euhome from './components/userecommerce/ecommerceuserhome'
+import Einfo from './components/userecommerce/ecommerceinfo'
+import Euregister from './components/userecommerce/ecommerceregister'
+import Eulogin from './components/userecommerce/ecommercelogin'
+import Exchange from './components/userecommerce/ecommercetodayexchange'
+import Ecart from './components/userecommerce/ecommercecart'
+import Esubmitorder from './components/userecommerce/ecommercesubmitorder'
+import Ephoto from './components/myecommerce/ecommerceaddphoto'
+import Eaddphoto from './components/myecommerce/ecommercephotoaction'
+//for import anime
+
+import { mapGetters } from 'vuex';
+
 
 
 /**
@@ -104,79 +84,7 @@ import Eedit from './components/myecommerce/ecommerceproductedit'
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 const routes=[
-  {
-    name:'crud-component',
-    path:'/vuejs/crud',
-    component:Crudcomponent
-  },
-  {
-    name:'about',
-    path:'/vuejs/about',
-    component:About
-  },
-  {
-    name:'Category',
-    path:'/vuejs/category',
-    component:Category
-  },
-  {
-    name:'Uploadfile',
-    path:'/upload',
-    component:Uploadfile
-  },
-  {
-    name:'Createcategory',
-    path:'/createcat',
-    component:Createcat
-  },
-  {
-    name:'Createproduct',
-    path:'/createpro',
-    component:Createpro
-  },
-  {
-    name:'Edit',
-    path:'/edit/:id',
-    component:Edit,
-    props:true
-  },
-  {
-    name:'showedit',
-    path:'/',
-    components:Edit,
-    props:true
-  },
-  {
-    name:'Showproduct',
-    path:'/vue/showproduct',
-    component:showproduct,
-    props:true
-  },
-  {
-    name:'showlogin',
-    path:'/vue/showlogin',
-    component:showlogin,
-  },
-  {
-    name:'addorder',
-    path:'/vue/viewcart',
-    component:Cart
-  },
-  {
-    name:'info',
-    path:'/vue/showinfo/:id',
-    component:Info
-  },
-  {
-    name:'payment',
-    path:'/vue/payment',
-    component:Payment
-  },
-  {
-    name:'myorder',
-    path:'/vue/myorder',
-    component:myorder
-  },
+
   //for myecommerce site
   {
     name:'ecommercehome',
@@ -208,7 +116,66 @@ const routes=[
     path:'/ecommerce/edit/',
     component:Eedit,
     props:true
-  }
+  },
+  {
+    name:'addphoto',
+    path:'/ecommerce/photo',
+    component:Ephoto
+  },
+  {
+    name:'photoadd',
+    path:'/ecommerce/addphoto/:id',
+    component:Eaddphoto,
+  },
+  {
+    name:'ecommerceuserhome',
+    path:'/ecommerce/user/home',
+    component:Euhome,
+  },
+  {
+    name:'ecommerceinfo',
+    path:'/ecommerce/user/info/:id',
+    component:Einfo
+  },
+  {
+    name:'ecommerceuregister',
+    path:'/ecommerce/user/register',
+    component:Euregister,
+    beforeEnter:(to,from,next)=>{
+      if(store.state.euser){
+        next('/ecommerce/user/home')
+      }else{
+        next()
+      }
+     }
+  },
+  {
+    name:'ecommercelogin',
+    path:'/ecommerce/user/login',
+    component:Eulogin,
+    beforeEnter:(to,from,next)=>{
+     if(store.state.euser){
+       next('/ecommerce/user/home')
+     }else{
+       next()
+     }
+    }
+  },{
+    name:'ecommercetodayexchange',
+    path:'/ecommerce/user/exchange',
+    component:Exchange
+  },
+  {
+    name:'ecommercecart',
+    path:'/ecommerce/user/cart',
+    component:Ecart
+  },
+  {
+    name:'ecommercesubmitorder',
+    path:'/ecommerce/user/submitorder',
+    component:Esubmitorder,
+    props:true
+  },
 
 ]
 const router=new VueRouter({
@@ -217,19 +184,59 @@ const router=new VueRouter({
   
 })
 const app = new Vue({
-    el: '#app',
-    el: '#eco',
-    el: '#ecouser',
-    components:{
-      Crudcomponent,
-      About,
-      Category,
-      Edit
-    },
+    el: '#user',
     router,
     VueSession,
-    store
-
+    store,
+    // created()
+    // {
+     
+    // },
+    // data:{
+    //   chat:{
+    //     message:[],
+    //     user:[],
+    //     color:[],
+    //     typing:''
+    //   },
+    // message:'',
+    // },
+    // methods:{
+    //  send()
+    //  {
+    //    if(this.message.length!=0)
+    //    {
+    //      this.chat.message.push(this.message)
+    //      this.chat.user.push('you')
+    //      this.chat.color.push('success')
+    //      axios.post('/animeframe/chatpage/send',{
+    //        message:this.message,
+    //        user:this.adminInfo,
+    //        userId:this.adminInfo.room_id
+    //      })
+    //      .then((resp)=>{
+    //        this.message=""
+    //      })
+    //    }
+    //  }
+    // },
+    // mounted()
+    // {
+    //   Echo.channel('chatting.1')
+    //   .listen('ChatEvent',(e)=>{
+    //     console.warn(e)
+    //     alert('Hello')
+    //   //  this.chat.message.push(e.message)
+    //   //  this.chat.user.push(e.user.name)
+    //   //  this.chat.color.push('warning')
+    //   })
+     
+    // }
+    
+    // computed:{
+    //   ...mapGetters(['adminInfo'])
+    // },
+    
 });
 
 

@@ -1,7 +1,7 @@
 <template>
   <div>
       <div v-if='!user'>
-           <div class="container" style="padding-top:70px;">
+           <div class="container" style="padding-top:70px;padding-bottom:150px;">
                <div class="row">
                    <div class="col-md-6 offset-md-3 bg-white">
                         <h2>Please login to continue</h2>

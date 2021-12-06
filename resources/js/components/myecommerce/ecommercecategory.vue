@@ -1,6 +1,6 @@
 <template>
-  <div style="padding-top:70px;">
-      <div v-if="!user">
+  <div>
+      <div v-if="!user" style="padding-top:70px;padding-bottom:110px;">
           <div class="container bg-white ">
                <div class="row">
                     <div class="col-md-8 offset-md-2">
@@ -10,8 +10,8 @@
                </div>
           </div>
       </div>
-      <div v-if="user">
-             <div class="container">
+      <div v-if="user" style="padding-top:70px;">
+             <div class="container con">
                  <div class="row">
                      <div class="col-md-4 bg-white" v-if="isclickedit==false">
                           <h2 align='center'>Add Category</h2>
@@ -116,7 +116,9 @@ methods:{
   {
     if(confirm('Are you sure want to delete?'))
     {
-       await axios.delete(`/ecommerce/deletecategory/${id}`)
+      var formdata=new FormData();
+      formdata.append('_method','DELETE');
+       await axios.post(`/ecommerce/deletecategory/${id}`,formdata)
     .then((resp)=>{
         alert('Delete Successfully');
         this.category='';
@@ -173,6 +175,9 @@ created()
   position: relative;
   width:100%;
   left: 100px;
+}
+.con{
+  padding-bottom: 100px;
 }
 
 

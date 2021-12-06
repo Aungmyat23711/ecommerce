@@ -1,0 +1,53 @@
+.card{
+    margin-left: 0px; 
+}
+.phover{
+  color: rgb(1, 8, 14);
+}
+.active,.phover:hover{
+  background-color: #666;
+  color: white;
+}
+.panel{
+  position: fixed;
+  width: 100%;
+  right: 0;
+  top: 140px;
+}
+.phone{
+  padding-bottom:10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .phone{
+        position: sticky;
+        padding-top: 150px;
+        
+    }
+    .img{
+       justify-content: center;
+       align-items: stretch;
+       flex:1;
+       flex-direction: column-reverse;
+    }
+    .cat{
+        max-width: 600px;
+        align-items: center;
+        justify-content: center;
+        height: 800px;
+    }
+    .form{
+        flex: 1;
+    }
+    .input-group{
+        justify-content: center;
+    }
+    .phover{
+      color: rgb(1, 8, 14);
+    }
+    .active,.phover:hover{
+      background-color: #666;
+      color: white;
+    }
+   
+  }

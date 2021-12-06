@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top:200px;">
       <h1 align='center'>This is footer of page</h1>
   </div>
 </template>
@@ -10,6 +10,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>
