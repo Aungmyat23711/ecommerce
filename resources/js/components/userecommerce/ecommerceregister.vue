@@ -2,7 +2,7 @@
   <div class="padd">
       <div class="container" style="padding-top:150px;">
           <div class="row">
-                <h2 align='center'>Register Form</h2>
+                <h2 align='center'>User Register Form</h2>
           </div>
           <div class="row">
                 <div class="col-md-6 offset-md-3">
